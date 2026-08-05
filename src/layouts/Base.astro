@@ -1,0 +1,155 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+
+const pages = [
+  { href: '/', label: 'Accueil' },
+  { href: '/rentabilite-panneaux-solaires-2026/', label: 'Rentabilité 2026' },
+  { href: '/aides-panneaux-solaires-2026/', label: 'Aides 2026' },
+  { href: '/tva-5-5-panneaux-solaires/', label: 'TVA 5,5 %' },
+  { href: '/tarif-rachat-edf-oa/', label: 'Tarif de rachat EDF OA' },
+  { href: '/mentions-legales/', label: 'Mentions légales' },
+  { href: '/politique-de-confidentialite/', label: 'Politique de confidentialité' },
+];
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content={canonicalURL} />
+
+    <style>
+      :root {
+        --texte: #1a1a1a;
+        --lien: #0b5c3f;
+        --discret: #5a5a5a;
+        --bordure: #e2e2e2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--texte);
+        background: #fff;
+      }
+
+      header,
+      main,
+      footer {
+        max-width: 70ch;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+
+      header {
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--bordure);
+      }
+
+      main {
+        padding-top: 2.5rem;
+        padding-bottom: 3rem;
+      }
+
+      footer {
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+        border-top: 1px solid var(--bordure);
+        color: var(--discret);
+        font-size: 0.95rem;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+        line-height: 1.25;
+        margin: 0 0 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+        line-height: 1.3;
+        margin: 2.5rem 0 1rem;
+      }
+
+      p {
+        margin: 0 0 1.25rem;
+      }
+
+      a {
+        color: var(--lien);
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+      }
+
+      a:hover,
+      a:focus {
+        text-decoration-thickness: 2px;
+      }
+
+      footer p {
+        margin: 1.25rem 0 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav aria-label="Navigation principale">
+        <ul>
+          {pages.map((page) => (
+            <li><a href={page.href}>{page.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <nav aria-label="Navigation de pied de page">
+        <ul>
+          {pages.map((page) => (
+            <li><a href={page.href}>{page.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <p>Informations générales sur le photovoltaïque en France. Ce site ne constitue pas un conseil financier.</p>
+    </footer>
+  </body>
+</html>
