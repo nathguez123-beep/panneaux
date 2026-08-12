@@ -7,12 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && python3 scripts/make_mirrors.py dist --base-url https://paneaux.netlify.app",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.6"
   }
 }

@@ -101,3 +101,16 @@ existante. Instruction en 1 mois, 2 mois en secteur protégé ou avis ABF.
 Rarement sur le plan strictement financier. Elle coûte 700 à 1 000 €/kWh et fait
 basculer l'ensemble du projet à 20 % de TVA, ce qui allonge le plus souvent le
 temps de retour au lieu de le raccourcir.
+
+## Markdown Mirrors
+
+Clean text version of every page, for AI crawlers:
+
+- https://paneaux.netlify.app/aides-panneaux-solaires-2026/index.md
+- https://paneaux.netlify.app/index.md
+- https://paneaux.netlify.app/mentions-legales/index.md
+- https://paneaux.netlify.app/politique-de-confidentialite/index.md
+- https://paneaux.netlify.app/reforme-photovoltaique-juin-2026/index.md
+- https://paneaux.netlify.app/rentabilite-panneaux-solaires-2026/index.md
+- https://paneaux.netlify.app/tarif-rachat-edf-oa/index.md
+- https://paneaux.netlify.app/tva-5-5-panneaux-solaires/index.md
