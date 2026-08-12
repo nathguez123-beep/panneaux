@@ -1,0 +1,311 @@
+---
+/**
+ * Progressive quote form — captures a sellable lead at every step.
+ *
+ * Lead value scales with completeness, so the form submits TWICE:
+ *   step 1 -> "devis-partiel"  (contact + postcode: a lead even if they bail)
+ *   step 3 -> "devis-complet"  (fully qualified, with a computed tier)
+ *
+ * Field order is deliberate: disqualifiers first (a tenant in a flat is worth
+ * nothing regardless of anything else), then value drivers, then contact.
+ */
+interface Props {
+  title?: string;
+  intro?: string;
+}
+const {
+  title = "Estimez votre projet",
+  intro = "Trois questions, moins d'une minute. Nous transmettons votre demande à des installateurs certifiés RGE QualiPV de votre secteur.",
+} = Astro.props;
+---
+
+<section class="devis" id="devis">
+  <h2>{title}</h2>
+  <p>{intro}</p>
+
+  <!-- Netlify needs static form definitions at build time. -->
+  <form name="devis-partiel" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="code_postal" />
+    <input type="email" name="email" />
+    <input type="text" name="statut" />
+    <input type="text" name="logement" />
+  </form>
+
+  <form name="devis-complet" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="code_postal" />
+    <input type="email" name="email" />
+    <input type="tel" name="telephone" />
+    <input type="text" name="statut" />
+    <input type="text" name="logement" />
+    <input type="text" name="facture" />
+    <input type="text" name="orientation" />
+    <input type="text" name="delai" />
+    <input type="text" name="lead_tier" />
+    <input type="text" name="lead_score" />
+  </form>
+
+  <form id="devis-form" class="devis-form" novalidate>
+    <p class="hp"><label>Ne pas remplir : <input name="bot-field" tabindex="-1" /></label></p>
+
+    <!-- STEP 1 — disqualifiers + contact. Submitted on its own. -->
+    <fieldset class="etape" data-etape="1">
+      <legend>1 / 3 — Votre logement</legend>
+
+      <label for="statut">Vous êtes</label>
+      <select id="statut" name="statut" required>
+        <option value="">Choisir…</option>
+        <option value="proprietaire">Propriétaire</option>
+        <option value="locataire">Locataire</option>
+      </select>
+
+      <label for="logement">Type de logement</label>
+      <select id="logement" name="logement" required>
+        <option value="">Choisir…</option>
+        <option value="maison">Maison individuelle</option>
+        <option value="appartement">Appartement</option>
+      </select>
+
+      <p class="stop" id="stop-msg" hidden>
+        Une installation photovoltaïque en toiture nécessite d'être propriétaire
+        d'une maison individuelle. Vous pouvez néanmoins consulter nos
+        <a href="/rentabilite-panneaux-solaires-2026/">repères de rentabilité</a>.
+      </p>
+
+      <label for="code_postal">Code postal</label>
+      <input id="code_postal" name="code_postal" inputmode="numeric"
+             pattern="[0-9]{5}" maxlength="5" placeholder="13100" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="vous@exemple.fr" required />
+
+      <label class="consent">
+        <input type="checkbox" id="consent" required />
+        <span>
+          J'accepte que mes données soient transmises à des installateurs
+          partenaires pour être recontacté. Voir la
+          <a href="/politique-de-confidentialite/">politique de confidentialité</a>.
+        </span>
+      </label>
+
+      <button type="button" data-next="2">Continuer</button>
+    </fieldset>
+
+    <!-- STEP 2 — the value drivers. -->
+    <fieldset class="etape" data-etape="2" hidden>
+      <legend>2 / 3 — Votre consommation</legend>
+
+      <label for="facture">Facture d'électricité annuelle</label>
+      <select id="facture" name="facture" required>
+        <option value="">Choisir…</option>
+        <option value="moins-800">Moins de 800 €</option>
+        <option value="800-1500">800 à 1 500 €</option>
+        <option value="1500-2500">1 500 à 2 500 €</option>
+        <option value="plus-2500">Plus de 2 500 €</option>
+      </select>
+
+      <label for="orientation">Orientation principale de la toiture</label>
+      <select id="orientation" name="orientation">
+        <option value="">Je ne sais pas</option>
+        <option value="sud">Sud</option>
+        <option value="est-ouest">Est / Ouest</option>
+        <option value="nord">Nord</option>
+      </select>
+
+      <div class="nav">
+        <button type="button" data-prev="1">Retour</button>
+        <button type="button" data-next="3">Continuer</button>
+      </div>
+    </fieldset>
+
+    <!-- STEP 3 — timing + phone. The premium signals. -->
+    <fieldset class="etape" data-etape="3" hidden>
+      <legend>3 / 3 — Votre projet</legend>
+
+      <label for="delai">Quand souhaitez-vous installer ?</label>
+      <select id="delai" name="delai" required>
+        <option value="">Choisir…</option>
+        <option value="moins-3-mois">Dans les 3 mois</option>
+        <option value="3-6-mois">Dans 3 à 6 mois</option>
+        <option value="6-12-mois">Dans 6 à 12 mois</option>
+        <option value="renseignement">Je me renseigne seulement</option>
+      </select>
+
+      <label for="telephone">Téléphone <span class="opt">(recommandé — permet un rappel sous 24 h)</span></label>
+      <input id="telephone" name="telephone" type="tel" inputmode="tel"
+             placeholder="06 12 34 56 78" />
+
+      <div class="nav">
+        <button type="button" data-prev="2">Retour</button>
+        <button type="submit">Envoyer ma demande</button>
+      </div>
+    </fieldset>
+
+    <p class="merci" id="merci" hidden>
+      Demande enregistrée. Un installateur certifié de votre secteur vous
+      recontacte sous 48 h ouvrées.
+    </p>
+  </form>
+</section>
+
+<style>
+  .devis {
+    border: 1px solid var(--bordure);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 3rem 0;
+    background: var(--encadre);
+  }
+  .devis h2 { margin-top: 0; }
+  .devis-form label {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .devis-form input[type='text'],
+  .devis-form input[type='email'],
+  .devis-form input[type='tel'],
+  .devis-form select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--bordure);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: #fff;
+  }
+  .devis-form fieldset { border: 0; padding: 0; margin: 0; }
+  .devis-form legend {
+    font-size: 0.85rem;
+    color: var(--discret);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0;
+  }
+  .devis-form button {
+    margin-top: 1.25rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 1rem;
+    border: 0;
+    border-radius: 4px;
+    background: var(--lien);
+    color: #fff;
+    cursor: pointer;
+  }
+  .devis-form button[data-prev] { background: transparent; color: var(--lien); text-decoration: underline; }
+  .devis-form .nav { display: flex; gap: 1rem; align-items: center; }
+  .devis-form .consent { display: flex; gap: 0.6rem; font-weight: 400; font-size: 0.9rem; align-items: flex-start; }
+  .devis-form .consent input { margin-top: 0.25rem; }
+  .devis-form .opt { font-weight: 400; color: var(--discret); }
+  .devis-form .hp { position: absolute; left: -9999px; }
+  .devis-form .stop { background: #fff4e5; border-left: 3px solid #c47f17; padding: 0.8rem 1rem; font-size: 0.95rem; }
+  .devis-form .invalide { border-color: #b3261e !important; }
+  .merci { font-weight: 600; }
+</style>
+
+<script>
+  const form = document.getElementById('devis-form') as HTMLFormElement;
+  if (form) {
+    const steps = [...form.querySelectorAll<HTMLElement>('.etape')];
+    const show = (n: number) =>
+      steps.forEach((s) => (s.hidden = s.dataset.etape !== String(n)));
+
+    const encode = (data: Record<string, string>) =>
+      Object.entries(data)
+        .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+        .join('&');
+
+    const post = (formName: string, data: Record<string, string>) =>
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': formName, ...data }),
+      }).catch(() => {});
+
+    const val = (id: string) =>
+      (document.getElementById(id) as HTMLInputElement | HTMLSelectElement)?.value.trim() ?? '';
+
+    // Disqualify early — a tenant or a flat can't have a rooftop install.
+    const checkEligible = () => {
+      const bad = val('statut') === 'locataire' || val('logement') === 'appartement';
+      const msg = document.getElementById('stop-msg')!;
+      msg.hidden = !bad;
+      return !bad;
+    };
+    ['statut', 'logement'].forEach((id) =>
+      document.getElementById(id)?.addEventListener('change', checkEligible)
+    );
+
+    const validate = (step: HTMLElement) => {
+      let ok = true;
+      step.querySelectorAll<HTMLInputElement>('[required]').forEach((el) => {
+        const filled = el.type === 'checkbox' ? el.checked : el.value.trim() !== '';
+        const valid = filled && (!el.pattern || new RegExp(`^${el.pattern}$`).test(el.value));
+        el.classList.toggle('invalide', !valid);
+        if (!valid) ok = false;
+      });
+      return ok;
+    };
+
+    let partialSent = false;
+
+    form.querySelectorAll<HTMLButtonElement>('[data-next]').forEach((btn) =>
+      btn.addEventListener('click', () => {
+        const current = btn.closest('.etape') as HTMLElement;
+        if (!validate(current)) return;
+        if (current.dataset.etape === '1') {
+          if (!checkEligible()) return;
+          if (!partialSent) {
+            // Fire the partial now — if they abandon, this is still a lead.
+            post('devis-partiel', {
+              code_postal: val('code_postal'),
+              email: val('email'),
+              statut: val('statut'),
+              logement: val('logement'),
+            });
+            partialSent = true;
+          }
+        }
+        show(Number(btn.dataset.next));
+      })
+    );
+
+    form.querySelectorAll<HTMLButtonElement>('[data-prev]').forEach((btn) =>
+      btn.addEventListener('click', () => show(Number(btn.dataset.prev)))
+    );
+
+    // Lead grading — mirrors what an installer will actually pay more for.
+    const score = () => {
+      let s = 0;
+      if (val('statut') === 'proprietaire') s += 25;
+      if (val('logement') === 'maison') s += 25;
+      if (val('telephone')) s += 20;
+      s += { 'plus-2500': 15, '1500-2500': 12, '800-1500': 7, 'moins-800': 2 }[val('facture')] ?? 0;
+      s += { 'moins-3-mois': 15, '3-6-mois': 10, '6-12-mois': 5, renseignement: 0 }[val('delai')] ?? 0;
+      if (val('orientation') === 'sud') s += 5;
+      else if (val('orientation') === 'est-ouest') s += 3;
+      return s;
+    };
+    const tier = (s: number) => (s >= 85 ? 'or' : s >= 60 ? 'argent' : 'bronze');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const current = form.querySelector<HTMLElement>('.etape[data-etape="3"]')!;
+      if (!validate(current)) return;
+      const s = score();
+      await post('devis-complet', {
+        code_postal: val('code_postal'),
+        email: val('email'),
+        telephone: val('telephone'),
+        statut: val('statut'),
+        logement: val('logement'),
+        facture: val('facture'),
+        orientation: val('orientation'),
+        delai: val('delai'),
+        lead_score: String(s),
+        lead_tier: tier(s),
+      });
+      steps.forEach((st) => (st.hidden = true));
+      document.getElementById('merci')!.hidden = false;
+    });
+  }
+</script>
