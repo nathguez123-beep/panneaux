@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.fr',
+  site: 'https://paneaux.netlify.app',
   integrations: [sitemap()]
 });
