@@ -1,29 +1,203 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "Combien coûte une installation de panneaux solaires en 2026 ?",
+    a: "De 6 000 à 11 000 € TTC posé pour 3 kWc, 9 500 à 17 000 € pour 6 kWc, 13 000 à 23 000 € pour 9 kWc. Rapporté à la puissance, un prix de 1,50 à 2,00 € par watt-crête est cohérent avec le marché ; au-delà de 2,50 €/Wc, le devis est cher.",
+  },
+  {
+    q: "En combien de temps une installation photovoltaïque est-elle rentabilisée ?",
+    a: "Entre 10 et 16 ans après la réforme de juin 2026 : 9 à 12 ans dans le Sud et le Sud-Ouest, 12 à 16 ans dans les zones moyennes. Les estimations de 8 ans encore en circulation datent d'avant la suppression de la prime.",
+  },
+  {
+    q: "Quel est le taux d'autoconsommation d'un foyer sans batterie ?",
+    a: "Environ 30 à 40 %, avec une valeur de référence autour de 35 % selon l'ADEME. Une répartition des panneaux sur plusieurs orientations, est-sud-ouest, ajoute environ 6 points.",
+  },
+  {
+    q: "Le photovoltaïque est-il encore rentable en 2026 ?",
+    a: "Oui, mais uniquement par l'autoconsommation. Le surplus n'étant racheté qu'à 1,1 c€/kWh, la rentabilité vient de l'électricité non achetée au réseau. Une installation dimensionnée au plus près de la consommation réelle reste rentable ; un surdimensionnement destiné à la revente ne l'est plus.",
+  },
+  {
+    q: "Combien produit une installation de 6 kWc par an ?",
+    a: "Entre 6 600 et 9 000 kWh selon la région, sur la base d'une production de 1 100 à 1 500 kWh par kWc et par an en toiture bien orientée.",
+  },
+];
 ---
 
 <Base
-  title="Rentabilité des panneaux solaires en 2026 : ce qu'il faut savoir"
-  description="Durée d'amortissement, coût au kWc, production annuelle et économies attendues : les facteurs qui déterminent la rentabilité d'une installation photovoltaïque en 2026."
+  title="Rentabilité des panneaux solaires en 2026 : chiffres après la réforme"
+  description="Prix au kWc, temps de retour, taux d'autoconsommation : les chiffres réels de la rentabilité photovoltaïque en France après la réforme de juin 2026."
+  updated="2026-08-12"
+  faq={faq}
 >
   <h1>Rentabilité des panneaux solaires en 2026</h1>
 
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>Le chiffre à retenir.</strong> Un devis cohérent se situe entre 1,50 et
+      2,00 € par watt-crête installé. Au-delà de 2,50 €/Wc, le prix est supérieur au marché,
+      quelle que soit la marque des panneaux proposés.
+    </p>
+  </div>
+
+  <h2>Prix d'une installation, août 2026</h2>
+
   <p>
-    La rentabilité d'une installation photovoltaïque se mesure généralement par sa durée
-    d'amortissement, c'est-à-dire le nombre d'années nécessaires pour que les économies
-    réalisées et les revenus de revente compensent l'investissement initial.
+    Les fourchettes ci-dessous correspondent à des installations en toiture, pose comprise,
+    TVA incluse. L'écart entre le bas et le haut de fourchette s'explique par la complexité
+    de la toiture, le type de panneaux et la marge de l'installateur.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Puissance</th>
+        <th>Prix TTC posé</th>
+        <th>Prix au Wc</th>
+        <th>Production annuelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3 kWc</td>
+        <td>6 000 – 11 000 €</td>
+        <td>2,00 – 3,67 €</td>
+        <td>3 300 – 4 500 kWh</td>
+      </tr>
+      <tr>
+        <td>6 kWc</td>
+        <td>9 500 – 17 000 €</td>
+        <td>1,58 – 2,83 €</td>
+        <td>6 600 – 9 000 kWh</td>
+      </tr>
+      <tr>
+        <td>9 kWc</td>
+        <td>13 000 – 23 000 €</td>
+        <td>1,44 – 2,56 €</td>
+        <td>9 900 – 13 500 kWh</td>
+      </tr>
+      <tr>
+        <td>12 kWc</td>
+        <td>18 000 – 26 000 €</td>
+        <td>1,50 – 2,17 €</td>
+        <td>13 200 – 18 000 kWh</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    La production repose sur 1 100 à 1 500 kWh par kWc et par an selon la zone
+    d'ensoleillement. Le haut de fourchette correspond au pourtour méditerranéen, le bas au
+    quart nord-est.
+  </p>
+
+  <h2>Temps de retour sur investissement</h2>
+
+  <p>
+    La réforme de juin 2026 a allongé les durées d'amortissement. La suppression de la prime
+    à l'autoconsommation retire environ 480 € sur une installation de 6 kWc, et la chute du
+    tarif de rachat du surplus à 1,1 c€/kWh réduit les revenus de revente d'environ 75 %.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Zone</th>
+        <th>Temps de retour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sud et Sud-Ouest</td>
+        <td>9 à 12 ans</td>
+      </tr>
+      <tr>
+        <td>Zones moyennes</td>
+        <td>12 à 16 ans</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Les estimations de 7 à 8 ans encore largement publiées correspondent au régime antérieur
+    au 5 juin 2026. Elles ne sont plus valables pour un projet engagé aujourd'hui.
+  </p>
+
+  <h2>Le taux d'autoconsommation est devenu le facteur décisif</h2>
+
+  <p>
+    Un foyer sans batterie autoconsomme environ 30 à 40 % de sa production, avec une valeur
+    de référence autour de 35 % selon l'ADEME. Le reste est injecté sur le réseau et racheté
+    1,1 c€/kWh.
   </p>
 
   <p>
-    Trois variables pèsent particulièrement lourd dans ce calcul : le coût au kilowatt-crête
-    installé, la production annuelle réelle exprimée en kWh, et le taux d'autoconsommation.
-    Plus l'électricité produite est consommée directement sur place, plus elle prend de valeur
-    par rapport au tarif de revente du surplus.
+    L'écart de valeur entre les deux usages est considérable : un kWh autoconsommé évite
+    l'achat d'un kWh au tarif réseau, soit environ vingt fois la valeur du même kWh revendu.
+    Toute la rentabilité se joue donc sur cette part.
   </p>
 
   <p>
-    L'évolution du prix de l'électricité du réseau constitue un quatrième facteur, difficile
-    à anticiper mais déterminant sur un horizon de vingt à vingt-cinq ans. Cette page a
-    vocation à accueillir des simulations chiffrées appuyées sur des données actualisées.
+    Deux leviers agissent dessus. Répartir les panneaux sur plusieurs orientations, est-sud-ouest
+    plutôt que plein sud, étale la production sur la journée et ajoute environ 6 points
+    d'autoconsommation. Décaler les usages importants — chauffe-eau, lave-linge, recharge de
+    véhicule — vers les heures de production produit le même effet. Selon l'ADEME, passer d'un
+    taux de 25 % à 45 % réduit le temps de retour d'environ 5 ans.
   </p>
+
+  <h2>Faut-il ajouter une batterie ?</h2>
+
+  <p>
+    Une batterie augmente le taux d'autoconsommation, mais son coût reste élevé : 700 à
+    1 000 € par kWh de capacité pour du lithium-ion, soit 6 000 à 12 000 € TTC pour un
+    ensemble de 6 à 10 kWh installé.
+  </p>
+
+  <div class="encadre">
+    <p>
+      <strong>Point de vigilance fiscal.</strong> Inclure une batterie dans la même
+      opération fait basculer l'ensemble du projet à 20 % de TVA, y compris la partie
+      photovoltaïque qui aurait autrement bénéficié du taux à 5,5 %.
+    </p>
+  </div>
+
+  <p>
+    L'ADEME appelle par ailleurs à la prudence sur le stockage résidentiel, pour des raisons
+    liées à l'extraction des matériaux. Sur le plan strictement financier, l'ajout d'une
+    batterie allonge le plus souvent le temps de retour plutôt qu'il ne le raccourcit.
+  </p>
+
+  <h2>Les variables à ne pas négliger</h2>
+
+  <ul class="contenu">
+    <li>
+      <strong>Le prix futur de l'électricité réseau.</strong> Sur un horizon de 20 à 25 ans,
+      c'est la variable la plus lourde et la moins prévisible. Plus il monte, plus
+      l'autoconsommation gagne en valeur.
+    </li>
+    <li>
+      <strong>Le remplacement de l'onduleur.</strong> Compter entre 1 000 et 2 000 € autour
+      de la dixième à quinzième année, sauf micro-onduleurs garantis 20 à 25 ans.
+    </li>
+    <li>
+      <strong>La perte de rendement des panneaux.</strong> De l'ordre de 0,5 % par an, soit
+      environ 90 % de la puissance initiale après 20 ans.
+    </li>
+    <li>
+      <strong>L'entretien.</strong> Un contrôle et un nettoyage annuels se facturent
+      généralement entre 150 et 250 €.
+    </li>
+  </ul>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
 </Base>

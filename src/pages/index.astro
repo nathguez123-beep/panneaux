@@ -1,37 +1,120 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "Qu'est-ce qui a changé pour le photovoltaïque en juin 2026 ?",
+    a: "L'arrêté du 1er juin 2026, en vigueur depuis le 5 juin, supprime la prime à l'autoconsommation, ramène le tarif de rachat du surplus de 4,73 à 1,1 c€/kWh, et interdit la vente totale pour les installations de 9 kWc ou moins.",
+  },
+  {
+    q: "Combien coûte une installation photovoltaïque en 2026 ?",
+    a: "De 6 000 à 11 000 € TTC posé pour 3 kWc, 9 500 à 17 000 € pour 6 kWc, 13 000 à 23 000 € pour 9 kWc. Un prix de 1,50 à 2,00 € par watt-crête est cohérent avec le marché.",
+  },
+  {
+    q: "Le photovoltaïque est-il encore rentable en France en 2026 ?",
+    a: "Oui, par l'autoconsommation. Le temps de retour se situe entre 10 et 16 ans selon la région. Le surplus n'étant racheté qu'à 1,1 c€/kWh, la rentabilité vient de l'électricité non achetée au réseau.",
+  },
+];
 ---
 
 <Base
-  title="Panneaux solaires : rentabilité et aides en France | Guide 2026"
-  description="Comprendre la rentabilité des panneaux photovoltaïques en France : coûts d'installation, aides disponibles, TVA réduite et tarifs de rachat EDF OA."
+  title="Panneaux solaires en France : prix, aides et rentabilité | Guide 2026"
+  description="Chiffres à jour après la réforme du 5 juin 2026 : prix au kWc, suppression de la prime à l'autoconsommation, tarif de rachat à 1,1 c€/kWh, TVA à 5,5 % et temps de retour réels."
+  updated="2026-08-12"
+  faq={faq}
 >
-  <h1>Panneaux solaires photovoltaïques : comprendre la rentabilité</h1>
+  <h1>Panneaux solaires photovoltaïques en France : les chiffres 2026</h1>
+
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>Le cadre a changé le 5 juin 2026.</strong> La prime à l'autoconsommation est
+      supprimée et le tarif de rachat du surplus est passé à 1,1 c€/kWh. Beaucoup de pages
+      en ligne affichent encore les anciens barèmes.
+      <a href="/reforme-photovoltaique-juin-2026/">Voir ce qui a changé</a>.
+    </p>
+  </div>
 
   <p>
-    Installer des panneaux solaires représente un investissement dont le retour dépend
-    de nombreux paramètres : la puissance installée, l'ensoleillement de votre région,
-    votre profil de consommation et le montant des aides auxquelles vous êtes éligible.
+    Ce site rassemble les repères chiffrés nécessaires pour évaluer un projet photovoltaïque
+    résidentiel en France : ce que coûte une installation, ce qu'elle produit, ce qui reste
+    comme soutien public, et en combien de temps elle s'amortit. Chaque page indique sa date
+    de mise à jour.
   </p>
 
-  <p>
-    Ce site rassemble des repères clairs pour évaluer un projet photovoltaïque en
-    autoconsommation ou en revente de surplus. Chaque page aborde un aspect précis du
-    sujet, des dispositifs de soutien public aux conditions tarifaires appliquées par
-    l'acheteur obligé.
-  </p>
+  <h2>Les chiffres de référence, août 2026</h2>
 
-  <p>
-    Les contenus proposés ici sont des textes de présentation destinés à être complétés
-    par des données chiffrées et des sources officielles avant toute publication.
-  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Repère</th>
+        <th>Valeur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Prix d'une installation 6 kWc</td>
+        <td>9 500 – 17 000 € TTC posé</td>
+      </tr>
+      <tr>
+        <td>Prix cohérent au watt-crête</td>
+        <td>1,50 – 2,00 €/Wc</td>
+      </tr>
+      <tr>
+        <td>Prime à l'autoconsommation</td>
+        <td>Supprimée depuis le 5 juin 2026</td>
+      </tr>
+      <tr>
+        <td>Tarif de rachat du surplus</td>
+        <td>1,1 c€/kWh, 20 ans, +2 %/an</td>
+      </tr>
+      <tr>
+        <td>TVA ≤ 9 kWc</td>
+        <td>5,5 %</td>
+      </tr>
+      <tr>
+        <td>Taux d'autoconsommation sans batterie</td>
+        <td>30 – 40 %</td>
+      </tr>
+      <tr>
+        <td>Temps de retour</td>
+        <td>10 – 16 ans selon la région</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <h2>Les sujets abordés</h2>
+  <h2>Les pages du site</h2>
 
-  <p>
-    Vous trouverez des pages consacrées à la <a href="/rentabilite-panneaux-solaires-2026/">rentabilité
-    d'une installation en 2026</a>, aux <a href="/aides-panneaux-solaires-2026/">aides
-    financières mobilisables</a>, à la <a href="/tva-5-5-panneaux-solaires/">TVA à taux
-    réduit</a> ainsi qu'au <a href="/tarif-rachat-edf-oa/">tarif de rachat EDF OA</a>.
-  </p>
+  <ul class="contenu">
+    <li>
+      <a href="/reforme-photovoltaique-juin-2026/">Réforme de juin 2026</a> — ce que
+      l'arrêté a changé, et ce qui reste acquis pour les dossiers déposés avant le 5 juin.
+    </li>
+    <li>
+      <a href="/rentabilite-panneaux-solaires-2026/">Rentabilité 2026</a> — prix par
+      puissance, production annuelle, temps de retour, effet du taux d'autoconsommation.
+    </li>
+    <li>
+      <a href="/aides-panneaux-solaires-2026/">Aides 2026</a> — ce qui subsiste après la
+      suppression de la prime, et pourquoi MaPrimeRénov' ne s'applique pas.
+    </li>
+    <li>
+      <a href="/tva-5-5-panneaux-solaires/">TVA à 5,5 %</a> — conditions, effet de seuil à
+      9 kWc, et l'effet des batteries sur le taux applicable.
+    </li>
+    <li>
+      <a href="/tarif-rachat-edf-oa/">Tarif de rachat EDF OA</a> — fonctionnement du
+      contrat, fin de la révision trimestrielle, date de référence.
+    </li>
+  </ul>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
 </Base>

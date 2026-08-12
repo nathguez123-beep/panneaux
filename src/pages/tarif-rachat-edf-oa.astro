@@ -1,28 +1,148 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "Quel est le tarif de rachat EDF OA en 2026 ?",
+    a: "1,1 centime d'euro par kWh (0,011 €/kWh HT) pour le surplus des nouvelles installations résidentielles, depuis le 5 juin 2026. Le contrat dure 20 ans et le tarif est revalorisé de 2 % par an.",
+  },
+  {
+    q: "Le tarif de rachat est-il toujours révisé chaque trimestre ?",
+    a: "Non. La révision trimestrielle qui existait sous le régime S21 précédent a été remplacée par un tarif fixe revalorisé de 2 % par an sur la durée du contrat.",
+  },
+  {
+    q: "Quelle date détermine le tarif applicable à mon installation ?",
+    a: "La date de la demande complète de raccordement (DCR), et non la signature du devis ni la mise en service. Une DCR déposée avant le 5 juin 2026 relève de l'ancien régime tarifaire.",
+  },
+  {
+    q: "Peut-on encore vendre la totalité de sa production ?",
+    a: "Non, plus pour les installations de 9 kWc ou moins. Depuis le 5 juin 2026, seule la vente de surplus en autoconsommation est possible dans cette gamme de puissance.",
+  },
+  {
+    q: "Combien rapporte le surplus d'une installation de 6 kWc ?",
+    a: "Environ 47 € par an. Sur une production de 6 600 kWh avec 35 % d'autoconsommation, le surplus injecté représente environ 4 290 kWh, rachetés à 1,1 c€/kWh.",
+  },
+];
 ---
 
 <Base
-  title="Tarif de rachat EDF OA : fonctionnement et grille tarifaire"
-  description="Comment fonctionne l'obligation d'achat EDF OA pour l'électricité photovoltaïque : contrat, durée d'engagement, révision trimestrielle des tarifs."
+  title="Tarif de rachat EDF OA 2026 : 1,1 c€/kWh depuis la réforme de juin"
+  description="Le tarif de rachat du surplus photovoltaïque est passé à 1,1 c€/kWh le 5 juin 2026. Fonctionnement du contrat, durée, indexation et date de référence."
+  updated="2026-08-12"
+  faq={faq}
 >
   <h1>Le tarif de rachat EDF OA</h1>
 
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>Tarif en vigueur.</strong> 0,011 €/kWh HT pour le surplus, soit
+      1,1 centime par kWh, pour toute demande complète de raccordement déposée à partir du
+      5 juin 2026. Contrat de 20 ans, revalorisé de 2 % par an.
+    </p>
+  </div>
+
+  <h2>Comment fonctionne l'obligation d'achat</h2>
+
   <p>
     EDF Obligation d'Achat rachète l'électricité photovoltaïque injectée sur le réseau dans
-    le cadre d'un contrat de longue durée, généralement conclu pour vingt ans. Ce contrat
-    peut porter sur la totalité de la production ou sur le seul surplus non consommé.
+    le cadre d'un contrat conclu pour 20 ans. Ce contrat porte désormais uniquement sur le
+    surplus non consommé, la vente totale n'étant plus autorisée pour les installations de
+    9 kWc ou moins depuis le 5 juin 2026.
   </p>
 
   <p>
-    Les tarifs sont fixés par arrêté et font l'objet d'une révision trimestrielle. Le tarif
-    applicable à une installation est celui en vigueur à la date de la demande complète de
-    raccordement, puis reste indexé pendant toute la durée du contrat.
+    D'autres acheteurs que EDF OA existent sur le marché, dits acheteurs alternatifs. Ils
+    proposent parfois des conditions différentes, en dehors du cadre de l'obligation d'achat.
+  </p>
+
+  <h2>Évolution du tarif</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Période de la DCR</th>
+        <th>Tarif du surplus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Avant le 5 juin 2026</td>
+        <td>4 à 4,73 c€/kWh selon la période et la puissance</td>
+      </tr>
+      <tr>
+        <td>À partir du 5 juin 2026</td>
+        <td>1,1 c€/kWh, tarif unique</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    La baisse représente environ 75 % du tarif antérieur. Elle s'accompagne de la suppression
+    de la <a href="/aides-panneaux-solaires-2026/">prime à l'autoconsommation</a>, décrite
+    sur la page consacrée à la <a href="/reforme-photovoltaique-juin-2026/">réforme de juin
+    2026</a>.
+  </p>
+
+  <h2>La révision trimestrielle a disparu</h2>
+
+  <p>
+    Sous le régime S21 précédent, les tarifs étaient révisés chaque trimestre par arrêté. Ce
+    mécanisme est remplacé par un tarif fixe, revalorisé de 2 % par an sur la durée du
+    contrat. Un contrat signé aujourd'hui à 1,1 c€/kWh atteint donc environ 1,63 c€/kWh à sa
+    vingtième année.
   </p>
 
   <p>
-    Le choix entre vente totale et vente de surplus a des conséquences durables sur
-    l'équilibre économique du projet. Cette page présentera la grille tarifaire à jour ainsi
-    que les modalités de facturation.
+    Les pages qui évoquent encore une grille tarifaire trimestrielle décrivent un régime
+    antérieur au 5 juin 2026.
   </p>
+
+  <h2>La date qui compte : la demande complète de raccordement</h2>
+
+  <p>
+    Le tarif applicable est celui en vigueur à la date de la <strong>demande complète de
+    raccordement</strong> (DCR), déposée auprès du gestionnaire de réseau. Ni la date de
+    signature du devis, ni celle de la pose, ni celle de la mise en service n'entrent en
+    compte.
+  </p>
+
+  <p>
+    Une DCR déposée jusqu'au 4 juin 2026 inclus conserve l'ancien tarif et l'ancienne prime
+    pendant les 20 ans du contrat. À partir du 5 juin, le nouveau régime s'applique.
+  </p>
+
+  <h2>Ce que rapporte réellement le surplus</h2>
+
+  <p>
+    Pour une installation de 6 kWc produisant 6 600 kWh par an avec un taux
+    d'autoconsommation de 35 %, le surplus injecté atteint environ 4 290 kWh. Au tarif de
+    1,1 c€/kWh, cela représente <strong>47 € de revenu annuel</strong>. Le même surplus
+    rapportait environ 200 € avant la réforme.
+  </p>
+
+  <p>
+    Ce montant ne constitue plus un élément structurant de l'équilibre financier d'un projet.
+    La valeur se situe désormais dans l'électricité autoconsommée, comme le détaille la page
+    <a href="/rentabilite-panneaux-solaires-2026/">rentabilité</a>.
+  </p>
+
+  <h2>Facturation et démarches</h2>
+
+  <p>
+    Le producteur émet une facture annuelle à l'acheteur, sur la base des index de production
+    relevés par le compteur communicant. Le contrat impose que l'installation soit réalisée
+    par un installateur qualifié RGE QualiPV et respecte les normes de raccordement en
+    vigueur.
+  </p>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
 </Base>

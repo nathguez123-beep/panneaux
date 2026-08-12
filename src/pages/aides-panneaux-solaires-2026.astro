@@ -1,29 +1,143 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "Quelles aides existent pour les panneaux solaires en 2026 ?",
+    a: "Depuis le 5 juin 2026, la seule aide nationale est la TVA à 5,5 % pour les installations de 9 kWc ou moins. La prime à l'autoconsommation est supprimée. MaPrimeRénov' ne couvre pas le photovoltaïque. Des aides locales existent selon les régions et intercommunalités.",
+  },
+  {
+    q: "Combien vaut la prime à l'autoconsommation en 2026 ?",
+    a: "Zéro. Elle est supprimée depuis le 5 juin 2026. Elle s'élevait auparavant à 80 € par kWc pour les installations de 3 à 9 kWc, soit 480 € pour une installation de 6 kWc.",
+  },
+  {
+    q: "MaPrimeRénov' finance-t-elle les panneaux photovoltaïques ?",
+    a: "Non. MaPrimeRénov' couvre le solaire thermique, qui produit de l'eau chaude, mais pas le solaire photovoltaïque, qui produit de l'électricité. C'est une confusion fréquente.",
+  },
+  {
+    q: "Faut-il un installateur RGE pour bénéficier des aides ?",
+    a: "Oui, pour la TVA à 5,5 %. Depuis le 1er mars 2026, l'installateur doit détenir une qualification professionnelle correspondante, de type RGE QualiPV.",
+  },
+];
 ---
 
 <Base
-  title="Aides pour les panneaux solaires en 2026 : dispositifs et conditions"
-  description="Prime à l'autoconsommation, TVA réduite, aides locales : panorama des dispositifs de soutien financier pour une installation photovoltaïque en 2026."
+  title="Aides aux panneaux solaires en 2026 : ce qui reste après la réforme"
+  description="Prime à l'autoconsommation supprimée depuis juin 2026. TVA à 5,5 %, aides locales, MaPrimeRénov' : le point sur les dispositifs réellement mobilisables en 2026."
+  updated="2026-08-12"
+  faq={faq}
 >
   <h1>Les aides aux panneaux solaires en 2026</h1>
 
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>Attention.</strong> La prime à l'autoconsommation est supprimée depuis le
+      5 juin 2026. De nombreuses pages en ligne affichent encore le barème de 80 €/kWc :
+      il n'est plus applicable aux nouvelles demandes. Voir la
+      <a href="/reforme-photovoltaique-juin-2026/">réforme de juin 2026</a>.
+    </p>
+  </div>
+
+  <h2>Panorama des dispositifs, août 2026</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dispositif</th>
+        <th>Statut</th>
+        <th>Montant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Prime à l'autoconsommation</td>
+        <td>Supprimée le 5 juin 2026</td>
+        <td>0 €</td>
+      </tr>
+      <tr>
+        <td>TVA réduite ≤ 9 kWc</td>
+        <td>En vigueur depuis le 1<sup>er</sup> octobre 2025</td>
+        <td>5,5 % au lieu de 20 %</td>
+      </tr>
+      <tr>
+        <td>TVA installations &gt; 9 kWc</td>
+        <td>En vigueur</td>
+        <td>20 %</td>
+      </tr>
+      <tr>
+        <td>MaPrimeRénov'</td>
+        <td>Ne couvre pas le photovoltaïque</td>
+        <td>0 €</td>
+      </tr>
+      <tr>
+        <td>Aides locales</td>
+        <td>Variables</td>
+        <td>Selon collectivité</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>La TVA à 5,5 % : la seule aide nationale restante</h2>
+
   <p>
-    Plusieurs dispositifs peuvent réduire le coût d'une installation photovoltaïque
-    résidentielle. Ils se cumulent parfois, mais chacun obéit à ses propres conditions
-    d'éligibilité, notamment en matière de puissance installée et de qualification de
-    l'installateur.
+    C'est désormais le principal levier public sur le coût d'une installation. Pour une
+    installation de 6 kWc facturée 14 000 € TTC, l'écart entre 5,5 % et 20 % représente
+    environ 1 700 €.
   </p>
 
   <p>
-    La prime à l'autoconsommation constitue le soutien national le plus connu pour les
-    installations en vente de surplus. À cela s'ajoutent des aides portées par les régions,
-    départements ou intercommunalités, dont les montants et les critères varient fortement
-    d'un territoire à l'autre.
+    Le taux réduit s'applique aux installations de 9 kWc ou moins, sur un logement achevé
+    depuis plus de deux ans, avec fourniture et pose par la même entreprise. La
+    <a href="/tva-5-5-panneaux-solaires/">page consacrée à la TVA</a> détaille les
+    conditions et les pièges de périmètre.
+  </p>
+
+  <h2>MaPrimeRénov' ne concerne pas le photovoltaïque</h2>
+
+  <p>
+    C'est la confusion la plus courante. MaPrimeRénov' couvre le solaire
+    <strong>thermique</strong>, qui produit de l'eau chaude sanitaire, et non le solaire
+    <strong>photovoltaïque</strong>, qui produit de l'électricité. Un projet de panneaux
+    photovoltaïques n'ouvre aucun droit à ce dispositif.
+  </p>
+
+  <h2>Les aides locales</h2>
+
+  <p>
+    Régions, départements, intercommunalités et parfois communes proposent leurs propres
+    dispositifs. Ils ne sont pas affectés par l'arrêté national de juin 2026 et représentent
+    aujourd'hui la seule source d'aide directe encore possible.
   </p>
 
   <p>
-    Avant d'engager un projet, il est recommandé de vérifier les barèmes en vigueur auprès
-    des sources officielles, ces montants étant révisés périodiquement.
+    Les montants et critères varient fortement d'un territoire à l'autre, et les enveloppes
+    sont souvent limitées dans le temps. Le service public France Rénov' et la collectivité
+    concernée sont les sources à interroger directement : aucune liste nationale n'est tenue
+    à jour de façon fiable.
   </p>
+
+  <h2>La condition RGE QualiPV</h2>
+
+  <p>
+    Depuis le 1<sup>er</sup> mars 2026, l'installateur doit détenir une qualification
+    professionnelle correspondante, de type RGE QualiPV, pour que le client bénéficie de la
+    TVA à 5,5 %. QualiPV est délivrée par Qualit'EnR et Qualibat selon la norme NF X50-091.
+  </p>
+
+  <p>
+    Cette qualification conditionnait auparavant l'accès à la prime à l'autoconsommation.
+    Cette fonction disparaît avec la prime, mais l'exigence demeure pour la TVA et pour la
+    signature du contrat d'obligation d'achat.
+  </p>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
 </Base>

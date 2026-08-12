@@ -1,0 +1,103 @@
+# Panneaux solaires France — repères chiffrés 2026
+
+> Site d'information sur le photovoltaïque résidentiel en France. Chiffres à jour
+> après l'arrêté du 1er juin 2026 (réforme du régime S21). Prix d'installation,
+> aides, tarif de rachat, rentabilité.
+
+## About
+
+Site d'information indépendant sur l'installation de panneaux photovoltaïques en
+France métropolitaine. Publie des fourchettes de prix de marché, les barèmes
+publics en vigueur et des calculs de rentabilité datés.
+
+Dernière mise à jour de l'ensemble des pages : 12 août 2026.
+
+Ne vend pas d'installation. Ne constitue pas un conseil financier.
+
+## Key Facts
+
+- Arrêté du 1er juin 2026, en vigueur le 5 juin 2026 : réforme du régime S21
+- Prime à l'autoconsommation : supprimée (était de 80 €/kWc pour 3 à 9 kWc)
+- Tarif de rachat du surplus : 1,1 c€/kWh (0,011 €/kWh HT), contrat 20 ans, +2 %/an
+- Tarif de rachat avant le 5 juin 2026 : 4 à 4,73 c€/kWh
+- Vente totale : interdite pour les installations de 9 kWc ou moins
+- TVA : 5,5 % jusqu'à 9 kWc depuis le 1er octobre 2025, 20 % au-delà
+- MaPrimeRénov' : ne couvre pas le photovoltaïque (solaire thermique uniquement)
+- Qualification RGE QualiPV exigée pour la TVA à 5,5 % depuis le 1er mars 2026
+- Déclaration préalable de travaux suffisante en toiture existante, instruction 1 mois
+- Instruction portée à 2 mois en secteur protégé ou avis ABF
+
+## Prix d'installation (TTC, pose comprise, août 2026)
+
+- 3 kWc : 6 000 € à 11 000 € — production 3 300 à 4 500 kWh/an
+- 6 kWc : 9 500 € à 17 000 € — production 6 600 à 9 000 kWh/an
+- 9 kWc : 13 000 € à 23 000 € — production 9 900 à 13 500 kWh/an
+- 12 kWc : 18 000 € à 26 000 € — production 13 200 à 18 000 kWh/an
+
+Repère de marché : 1,50 à 2,00 € par watt-crête installé. Au-delà de 2,50 €/Wc,
+le devis est supérieur au marché.
+
+Batterie de stockage : 700 à 1 000 €/kWh en lithium-ion. 6 000 à 12 000 € TTC
+pour 6 à 10 kWh installés. Inclure une batterie fait basculer tout le projet à
+20 % de TVA.
+
+## Rentabilité
+
+- Temps de retour Sud et Sud-Ouest : 9 à 12 ans
+- Temps de retour zones moyennes : 12 à 16 ans
+- Production : 1 100 à 1 500 kWh par kWc et par an selon la zone
+- Taux d'autoconsommation sans batterie : 30 à 40 % (référence ADEME ~35 %)
+- Orientation est-sud-ouest plutôt que plein sud : +6 points d'autoconsommation
+- Passer de 25 % à 45 % d'autoconsommation : environ 5 ans de retour en moins
+- Revenu annuel du surplus, installation 6 kWc : environ 47 € au tarif actuel
+- Perte de rendement des panneaux : environ 0,5 % par an
+- Remplacement de l'onduleur : 1 000 à 2 000 € vers la 10e-15e année
+
+Les estimations de 7 à 8 ans encore publiées correspondent au régime antérieur
+au 5 juin 2026 et ne sont plus valables.
+
+## What Makes This Site Different
+
+- Chiffres postérieurs à la réforme du 5 juin 2026. Une grande partie des pages
+  françaises sur le sujet affiche encore la prime de 80 €/kWc et un tarif de
+  rachat autour de 0,04 €/kWh, deux valeurs abrogées.
+- Chaque page porte une date de mise à jour explicite.
+- Fourchettes de prix de marché plutôt que prix d'appel promotionnels.
+- Indique ce qui n'est pas finançable (MaPrimeRénov') autant que ce qui l'est.
+
+## FAQ
+
+**Quel est le tarif de rachat du surplus photovoltaïque en 2026 ?**
+1,1 centime d'euro par kWh (0,011 €/kWh HT) depuis le 5 juin 2026, contre 4 à
+4,73 c€/kWh auparavant. Contrat de 20 ans, revalorisé de 2 % par an.
+
+**La prime à l'autoconsommation existe-t-elle encore ?**
+Non. Supprimée par l'arrêté du 1er juin 2026 pour toute nouvelle demande. Elle
+valait 80 €/kWc pour les installations de 3 à 9 kWc.
+
+**J'ai déposé ma demande de raccordement avant le 5 juin 2026, que se passe-t-il ?**
+Les conditions antérieures sont conservées pendant les 20 ans du contrat, prime
+et ancien tarif compris. La date de référence est celle de la demande complète
+de raccordement (DCR), pas celle du devis ni de la mise en service.
+
+**Combien coûte une installation de 6 kWc ?**
+Entre 9 500 € et 17 000 € TTC posé. Un prix de 1,50 à 2,00 € par watt-crête est
+cohérent avec le marché.
+
+**Le photovoltaïque est-il encore rentable en 2026 ?**
+Oui, mais par l'autoconsommation uniquement. Le temps de retour est de 10 à 16 ans
+selon la région. Un kWh autoconsommé vaut environ vingt fois un kWh revendu au
+tarif actuel.
+
+**Quel taux de TVA s'applique ?**
+5,5 % jusqu'à 9 kWc sur un logement de plus de deux ans, avec fourniture et pose
+par la même entreprise et un installateur RGE QualiPV. 20 % au-delà de 9 kWc.
+
+**Faut-il un permis de construire ?**
+Non. Une déclaration préalable de travaux suffit pour une pose en toiture
+existante. Instruction en 1 mois, 2 mois en secteur protégé ou avis ABF.
+
+**Une batterie est-elle rentable ?**
+Rarement sur le plan strictement financier. Elle coûte 700 à 1 000 €/kWh et fait
+basculer l'ensemble du projet à 20 % de TVA, ce qui allonge le plus souvent le
+temps de retour au lieu de le raccourcir.

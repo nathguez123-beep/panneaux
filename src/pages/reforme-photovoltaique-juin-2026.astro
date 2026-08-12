@@ -1,0 +1,166 @@
+---
+import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "La prime à l'autoconsommation existe-t-elle encore en 2026 ?",
+    a: "Non. L'arrêté du 1er juin 2026, entré en vigueur le 5 juin 2026, supprime la prime à l'autoconsommation pour toute nouvelle demande. Elle s'élevait auparavant à 80 € par kWc pour les installations de 3 à 9 kWc.",
+  },
+  {
+    q: "Quel est le tarif de rachat du surplus photovoltaïque depuis juin 2026 ?",
+    a: "1,1 centime d'euro par kWh (0,011 €/kWh HT), pour toutes les nouvelles installations résidentielles. Le contrat dure 20 ans et le tarif est revalorisé de 2 % par an. Avant la réforme, ce tarif se situait entre 4 et 4,73 c€/kWh.",
+  },
+  {
+    q: "J'ai déposé ma demande de raccordement avant le 5 juin 2026, que se passe-t-il ?",
+    a: "Vous conservez les conditions antérieures pendant toute la durée du contrat, soit 20 ans : prime à l'autoconsommation et ancien tarif de rachat. La date qui fait foi est celle de la demande complète de raccordement (DCR).",
+  },
+  {
+    q: "La vente totale est-elle encore possible pour une installation résidentielle ?",
+    a: "Non. Depuis le 5 juin 2026, la vente totale n'est plus permise pour les installations de 9 kWc ou moins. Seule la vente de surplus en autoconsommation reste possible.",
+  },
+  {
+    q: "Le photovoltaïque est-il encore rentable après la réforme ?",
+    a: "Oui, mais l'équilibre a changé. Le temps de retour se situe désormais entre 10 et 16 ans selon la région, contre 8 à 12 ans auparavant. La valeur vient maintenant presque entièrement de l'autoconsommation, puisque le surplus n'est plus racheté qu'à 1,1 c€/kWh.",
+  },
+];
+---
+
+<Base
+  title="Réforme photovoltaïque de juin 2026 : ce qui a changé | Arrêté S21"
+  description="L'arrêté du 1er juin 2026 supprime la prime à l'autoconsommation et ramène le tarif de rachat du surplus à 1,1 c€/kWh. Ce qui change, pour qui, et ce qui reste acquis."
+  updated="2026-08-12"
+  faq={faq}
+>
+  <h1>Réforme photovoltaïque de juin 2026 : ce qui a changé</h1>
+
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>En résumé.</strong> L'arrêté du 1<sup>er</sup> juin 2026, publié au Journal
+      officiel le 4 juin et entré en vigueur le 5 juin 2026, réforme le régime S21. La prime
+      à l'autoconsommation est supprimée. Le tarif de rachat du surplus passe à
+      1,1 c€/kWh. La vente totale n'est plus autorisée en dessous de 9 kWc.
+    </p>
+  </div>
+
+  <h2>Les trois changements</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dispositif</th>
+        <th>Avant le 5 juin 2026</th>
+        <th>Depuis le 5 juin 2026</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Prime à l'autoconsommation</td>
+        <td>80 €/kWc (3 à 9 kWc)</td>
+        <td>Supprimée</td>
+      </tr>
+      <tr>
+        <td>Tarif de rachat du surplus</td>
+        <td>4 à 4,73 c€/kWh</td>
+        <td>1,1 c€/kWh</td>
+      </tr>
+      <tr>
+        <td>Vente totale ≤ 9 kWc</td>
+        <td>Autorisée</td>
+        <td>Interdite</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Ce que devient le tarif de rachat</h2>
+
+  <p>
+    Le tarif unique de 0,011 €/kWh HT s'applique à toutes les nouvelles installations
+    résidentielles. Le contrat reste conclu pour 20 ans. Le mécanisme de révision
+    trimestrielle qui existait sous le régime S21 précédent est remplacé par une
+    revalorisation fixe de 2 % par an : après vingt ans, le tarif atteint donc environ
+    1,63 c€/kWh.
+  </p>
+
+  <p>
+    Concrètement, pour une installation de 6 kWc produisant 6 600 kWh par an avec un taux
+    d'autoconsommation de 35 %, le surplus injecté représente environ 4 290 kWh, soit
+    47 € de revenu annuel au nouveau tarif. Le même surplus rapportait environ 200 € avant
+    la réforme.
+  </p>
+
+  <h2>Si votre demande de raccordement est antérieure au 5 juin 2026</h2>
+
+  <p>
+    Les conditions antérieures sont conservées pour toute la durée du contrat, soit 20 ans.
+    Cela vaut à la fois pour la prime à l'autoconsommation et pour l'ancien tarif de rachat.
+  </p>
+
+  <p>
+    La date qui fait foi est celle de la <strong>demande complète de raccordement</strong>
+    (DCR), et non la date de signature du devis ni celle de la mise en service. Une DCR
+    déposée le 4 juin 2026 relève de l'ancien régime ; une DCR déposée le 5 juin relève du
+    nouveau.
+  </p>
+
+  <h2>Ce qui n'a pas changé</h2>
+
+  <ul class="contenu">
+    <li>
+      La <a href="/tva-5-5-panneaux-solaires/">TVA à 5,5 %</a> reste applicable aux
+      installations de 9 kWc ou moins, depuis le 1<sup>er</sup> octobre 2025.
+    </li>
+    <li>
+      La qualification <strong>RGE QualiPV</strong> de l'installateur reste exigée pour
+      bénéficier du taux réduit de TVA.
+    </li>
+    <li>
+      Une <strong>déclaration préalable de travaux</strong> suffit toujours pour une pose
+      en toiture existante. Le permis de construire n'est pas requis.
+    </li>
+    <li>
+      Les aides locales portées par les régions, départements et intercommunalités ne sont
+      pas concernées par l'arrêté national.
+    </li>
+  </ul>
+
+  <h2>Ce que la réforme implique pour un projet</h2>
+
+  <p>
+    La valeur d'une installation vient désormais presque entièrement de l'électricité
+    autoconsommée, et non de la revente. Chaque kWh consommé sur place évite l'achat d'un
+    kWh au tarif réseau ; chaque kWh injecté ne rapporte plus que 1,1 centime.
+  </p>
+
+  <p>
+    Le levier principal est donc le <strong>taux d'autoconsommation</strong>, qui se situe
+    autour de 30 à 40 % pour un foyer sans batterie. Décaler les usages importants vers les
+    heures de production, ou répartir les panneaux sur plusieurs orientations, pèse plus
+    lourd sur l'équilibre économique qu'auparavant. Le
+    <a href="/rentabilite-panneaux-solaires-2026/">calcul de rentabilité</a> détaille ces
+    paramètres.
+  </p>
+
+  <p>
+    Un surdimensionnement qui se justifiait par la revente ne se justifie plus. Dimensionner
+    au plus près de la consommation réelle du foyer devient l'approche la plus rationnelle.
+  </p>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+
+  <p class="sources">
+    Arrêté du 1<sup>er</sup> juin 2026 (JORFTEXT000054190669), publié au Journal officiel
+    du 4 juin 2026. Consulter également les publications de la Commission de régulation de
+    l'énergie et le service EDF Obligation d'Achat pour la grille tarifaire en vigueur.
+  </p>
+</Base>

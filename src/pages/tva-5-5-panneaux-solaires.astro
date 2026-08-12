@@ -1,28 +1,135 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const faq = [
+  {
+    q: "Quel taux de TVA s'applique aux panneaux solaires en 2026 ?",
+    a: "5,5 % pour les installations de 9 kWc ou moins depuis le 1er octobre 2025, sur un logement achevé depuis plus de deux ans, avec fourniture et pose par la même entreprise. 20 % au-delà de 9 kWc.",
+  },
+  {
+    q: "Combien la TVA à 5,5 % fait-elle économiser ?",
+    a: "Environ 1 700 € sur une installation de 6 kWc facturée 14 000 € TTC, par rapport au taux normal de 20 %.",
+  },
+  {
+    q: "Ajouter une batterie change-t-il le taux de TVA ?",
+    a: "Oui. Inclure une batterie de stockage dans la même opération fait basculer l'ensemble du projet à 20 % de TVA, y compris la partie photovoltaïque.",
+  },
+  {
+    q: "Faut-il un installateur RGE pour la TVA à 5,5 % ?",
+    a: "Oui. Depuis le 1er mars 2026, l'installateur doit détenir une qualification professionnelle correspondante, de type RGE QualiPV.",
+  },
+];
 ---
 
 <Base
-  title="TVA à 5,5 % sur les panneaux solaires : conditions d'application"
-  description="Dans quels cas la TVA à taux réduit de 5,5 % s'applique-t-elle à une installation photovoltaïque résidentielle ? Conditions, périmètre et points de vigilance."
+  title="TVA à 5,5 % sur les panneaux solaires : conditions et pièges en 2026"
+  description="Taux réduit de TVA à 5,5 % pour les installations photovoltaïques de 9 kWc ou moins : conditions d'éligibilité, périmètre de la facture et effet des batteries."
+  updated="2026-08-12"
+  faq={faq}
 >
   <h1>La TVA à 5,5 % sur les installations photovoltaïques</h1>
 
+  <p class="maj">Dernière mise à jour : 12 août 2026</p>
+
+  <div class="encadre">
+    <p>
+      <strong>Depuis la suppression de la prime à l'autoconsommation en juin 2026, la TVA
+      réduite est la seule aide nationale restante</strong> sur un projet photovoltaïque
+      résidentiel. Elle représente environ 1 700 € d'économie sur une installation de 6 kWc.
+    </p>
+  </div>
+
+  <h2>Les taux applicables</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Puissance installée</th>
+        <th>Taux de TVA</th>
+        <th>Depuis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>9 kWc ou moins</td>
+        <td>5,5 %</td>
+        <td>1<sup>er</sup> octobre 2025</td>
+      </tr>
+      <tr>
+        <td>Plus de 9 kWc</td>
+        <td>20 %</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Les conditions d'éligibilité</h2>
+
+  <ul class="contenu">
+    <li>Puissance installée de <strong>9 kWc ou moins</strong>.</li>
+    <li>Logement <strong>achevé depuis plus de deux ans</strong>.</li>
+    <li>
+      <strong>Fourniture et pose par la même entreprise.</strong> Acheter les panneaux
+      séparément et faire poser par un tiers fait perdre le bénéfice du taux réduit sur le
+      matériel.
+    </li>
+    <li>
+      Installateur détenant une <strong>qualification RGE QualiPV</strong>, exigence
+      renforcée depuis le 1<sup>er</sup> mars 2026.
+    </li>
+  </ul>
+
+  <h2>L'effet de seuil à 9 kWc</h2>
+
   <p>
-    Le taux réduit de TVA constitue un levier direct sur le coût final d'une installation.
-    Son application dépend notamment de la puissance de l'installation, de la nature du
-    logement concerné et du fait que la fourniture et la pose soient assurées par la même
-    entreprise.
+    Le passage de 9 à 10 kWc fait basculer l'ensemble de la facture de 5,5 % à 20 %. Sur une
+    installation autour de 18 000 € HT, l'écart de TVA représente environ 2 600 €, sans
+    aucune contrepartie en production.
   </p>
 
   <p>
-    Le périmètre du taux réduit ne couvre pas systématiquement l'ensemble des postes d'une
-    facture. Certains équipements annexes peuvent rester soumis au taux normal, ce qui rend
-    utile une lecture attentive du devis poste par poste.
+    Un projet dimensionné juste au-dessus du seuil mérite donc d'être recalculé à 9 kWc. Avec
+    un tarif de rachat du surplus tombé à
+    <a href="/tarif-rachat-edf-oa/">1,1 c€/kWh</a>, la puissance supplémentaire ne se
+    valorise plus par la revente.
+  </p>
+
+  <h2>Le piège de la batterie</h2>
+
+  <div class="encadre">
+    <p>
+      Inclure une batterie de stockage dans la même opération fait passer
+      <strong>l'ensemble du projet à 20 % de TVA</strong>, y compris la partie
+      photovoltaïque qui aurait sinon bénéficié du taux réduit.
+    </p>
+  </div>
+
+  <p>
+    Sur une installation de 6 kWc à 14 000 € accompagnée d'une batterie de 10 kWh à 9 000 €,
+    la perte du taux réduit sur la partie photovoltaïque ajoute environ 1 700 € au coût
+    total, en plus du prix de la batterie elle-même.
+  </p>
+
+  <h2>Le périmètre de la facture</h2>
+
+  <p>
+    Le taux réduit ne couvre pas systématiquement tous les postes d'un devis. Certains
+    équipements annexes restent soumis au taux normal. La lecture ligne par ligne du devis,
+    avec le taux appliqué à chaque poste, est le seul moyen de vérifier le montant réellement
+    facturé.
   </p>
 
   <p>
-    Les règles fiscales applicables évoluant régulièrement, cette page sera complétée avec
-    les références réglementaires en vigueur et des exemples de facturation.
+    Un devis qui affiche un prix global sans détail des taux mérite d'être renvoyé à
+    l'installateur pour ventilation.
   </p>
+
+  <h2>Questions fréquentes</h2>
+
+  {faq.map((item) => (
+    <>
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </>
+  ))}
 </Base>
