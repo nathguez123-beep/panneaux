@@ -12,10 +12,13 @@
 interface Props {
   title?: string;
   intro?: string;
+  /** Shown if the submission fails. MUST be a real address you monitor. */
+  fallbackEmail?: string;
 }
 const {
   title = "Estimez votre projet",
   intro = "Trois questions, moins d'une minute. Nous transmettons votre demande à des installateurs certifiés RGE QualiPV de votre secteur.",
+  fallbackEmail = "contact@example.fr",
 } = Astro.props;
 ---
 
@@ -144,6 +147,12 @@ const {
       Demande enregistrée. Un installateur certifié de votre secteur vous
       recontacte sous 48 h ouvrées.
     </p>
+
+    <p class="echec" id="echec" hidden>
+      L'envoi a échoué. Rien n'a été enregistré — merci de nous écrire
+      directement à <a id="fallback-mail" href={`mailto:${fallbackEmail}`}>{fallbackEmail}</a>
+      en précisant votre code postal.
+    </p>
   </form>
 </section>
 
@@ -200,6 +209,13 @@ const {
   .devis-form .stop { background: #fff4e5; border-left: 3px solid #c47f17; padding: 0.8rem 1rem; font-size: 0.95rem; }
   .devis-form .invalide { border-color: #b3261e !important; }
   .merci { font-weight: 600; }
+  .echec {
+    font-weight: 600;
+    color: #b3261e;
+    background: #fdecea;
+    border-left: 3px solid #b3261e;
+    padding: 0.8rem 1rem;
+  }
 </style>
 
 <script>
@@ -214,12 +230,23 @@ const {
         .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
         .join('&');
 
-    const post = (formName: string, data: Record<string, string>) =>
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': formName, ...data }),
-      }).catch(() => {});
+    // Returns true ONLY if the submission was actually accepted.
+    // Never swallow the failure — a lead that silently vanishes while the
+    // visitor is told they'll be contacted is worse than no form at all.
+    const post = async (formName: string, data: Record<string, string>) => {
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({ 'form-name': formName, ...data }),
+        });
+        if (!res.ok) console.error(`[devis] ${formName} rejected: HTTP ${res.status}`);
+        return res.ok;
+      } catch (err) {
+        console.error(`[devis] ${formName} failed`, err);
+        return false;
+      }
+    };
 
     const val = (id: string) =>
       (document.getElementById(id) as HTMLInputElement | HTMLSelectElement)?.value.trim() ?? '';
@@ -256,13 +283,15 @@ const {
           if (!checkEligible()) return;
           if (!partialSent) {
             // Fire the partial now — if they abandon, this is still a lead.
+            // Deliberately not awaited: never make the visitor wait on it.
+            // Failure is logged, not surfaced — the final submit is the
+            // one that owes the visitor an honest answer.
             post('devis-partiel', {
               code_postal: val('code_postal'),
               email: val('email'),
               statut: val('statut'),
               logement: val('logement'),
-            });
-            partialSent = true;
+            }).then((ok) => { if (ok) partialSent = true; });
           }
         }
         show(Number(btn.dataset.next));
@@ -291,8 +320,13 @@ const {
       e.preventDefault();
       const current = form.querySelector<HTMLElement>('.etape[data-etape="3"]')!;
       if (!validate(current)) return;
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Envoi…';
+
       const s = score();
-      await post('devis-complet', {
+      const ok = await post('devis-complet', {
         code_postal: val('code_postal'),
         email: val('email'),
         telephone: val('telephone'),
@@ -304,7 +338,17 @@ const {
         lead_score: String(s),
         lead_tier: tier(s),
       });
+
+      btn.disabled = false;
+      btn.textContent = label;
+
+      if (!ok) {
+        // Leave the form filled in so they can retry, and tell the truth.
+        document.getElementById('echec')!.hidden = false;
+        return;
+      }
       steps.forEach((st) => (st.hidden = true));
+      document.getElementById('echec')!.hidden = true;
       document.getElementById('merci')!.hidden = false;
     });
   }
