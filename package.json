@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && python3 scripts/make_mirrors.py dist --base-url https://paneaux.netlify.app",
+    "build": "git fetch --unshallow 2>/dev/null || true; astro build && python3 scripts/make_mirrors.py dist --base-url https://paneaux.netlify.app",
     "preview": "astro preview",
     "astro": "astro"
   },

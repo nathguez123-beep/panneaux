@@ -10,6 +10,7 @@ Usage:
 """
 import argparse
 import datetime
+import subprocess
 import sys
 from pathlib import Path
 
@@ -35,6 +36,56 @@ STRIP_SELECTORS = [
 ]
 
 SKIP_DIRS = {"node_modules", ".git", ".astro", ".next", "_astro", "assets"}
+
+# Where a route's source file might live, most conventional first.
+SOURCE_DIRS = ["src/pages", "pages", "src/content", "content", "src"]
+SOURCE_EXTS = [".astro", ".md", ".mdx", ".html", ".tsx", ".jsx", ".vue", ".svelte"]
+
+
+def git_root(start: Path):
+    """Repo root containing the build dir, or None if this isn't a git checkout."""
+    try:
+        r = subprocess.run(["git", "-C", str(start), "rev-parse", "--show-toplevel"],
+                           capture_output=True, text=True, timeout=10)
+        if r.returncode == 0 and r.stdout.strip():
+            return Path(r.stdout.strip())
+    except Exception:
+        pass
+    return None
+
+
+def is_shallow(root: Path) -> bool:
+    """Shallow clones (Netlify, CI) can lack the commit that last touched a file."""
+    try:
+        r = subprocess.run(["git", "-C", str(root), "rev-parse", "--is-shallow-repository"],
+                           capture_output=True, text=True, timeout=10)
+        return r.returncode == 0 and r.stdout.strip() == "true"
+    except Exception:
+        return False
+
+
+def source_for(route: str, root: Path):
+    """Map a built route back to the source file that produced it."""
+    rel = "index" if route == "/" else route.strip("/")
+    for d in SOURCE_DIRS:
+        for ext in SOURCE_EXTS:
+            for cand in (root / d / (rel + ext), root / d / rel / ("index" + ext)):
+                if cand.is_file():
+                    return cand
+    return None
+
+
+def git_commit_date(src: Path, root: Path):
+    """Date of the last commit touching src (YYYY-MM-DD), or None if never committed."""
+    try:
+        r = subprocess.run(
+            ["git", "-C", str(root), "log", "-1", "--format=%cI", "--", str(src.relative_to(root))],
+            capture_output=True, text=True, timeout=10)
+        if r.returncode == 0 and r.stdout.strip():
+            return r.stdout.strip()[:10]
+    except Exception:
+        pass
+    return None
 
 
 def route_for(html_path: Path, build_dir: Path) -> str:
@@ -101,7 +152,14 @@ def main():
     if not html_files:
         sys.exit(f"no .html found under {build_dir} - build the site first")
 
-    written, urls, skipped = 0, [], []
+    root = git_root(build_dir)
+    shallow = is_shallow(root) if root else False
+    if shallow:
+        print("WARNING: shallow git clone - 'git log' may not reach the commit that\n"
+              "         last touched a page, so dates can fall back to the build date.\n"
+              "         Deepen the checkout (e.g. 'git fetch --unshallow') before building.")
+
+    written, urls, skipped, fellback = 0, [], [], []
     for html_path in html_files:
         try:
             title, desc, body = extract(html_path.read_text(encoding="utf-8", errors="replace"))
@@ -117,10 +175,25 @@ def main():
         url = base + route
         md_url = (base + route.rstrip("/") + "/index.md") if route != "/" else base + "/index.md"
 
+        # Date the content actually changed, not the date we happened to deploy.
+        src = source_for(route, root) if root else None
+        last_updated = git_commit_date(src, root) if src else None
+        if not last_updated:
+            if not root:
+                why = "not a git checkout"
+            elif not src:
+                why = "no source file matched"
+            elif shallow:
+                why = "no commit found (shallow clone truncated the history)"
+            else:
+                why = "source not committed yet"
+            fellback.append((route, why))
+            last_updated = today
+
         header = [f"# {title}" if title else "", ""]
         if desc:
             header += [f"> {desc}", ""]
-        header += [f"url: {url}", f"last_updated: {today}", "", "---", ""]
+        header += [f"url: {url}", f"last_updated: {last_updated}", "", "---", ""]
         content = "\n".join(x for x in header if x is not None) + "\n" + body + "\n"
 
         out_path = html_path.with_name("index.md") if html_path.name == "index.html" \
@@ -132,6 +205,15 @@ def main():
         urls.append(md_url)
 
     print(f"{'would write' if args.dry_run else 'wrote'} {written} markdown mirrors under {build_dir}")
+    print(f"last_updated: {written - len(fellback)}/{written} from git history")
+    if fellback:
+        # Loud on purpose: a silent fallback to build date is the bug this replaced.
+        print(f"WARNING: {len(fellback)} of {written} mirrors fell back to the build date "
+              f"({today}) and now claim to be fresher than they are:")
+        for route, why in fellback[:10]:
+            print(f"  - {route}: {why}")
+        if len(fellback) > 10:
+            print(f"  ... and {len(fellback) - 10} more")
     if skipped:
         print(f"skipped {len(skipped)}:")
         for name, why in skipped[:10]:
